@@ -39,7 +39,8 @@ class reader(object):
 
         return df
 
-    def error(self, f, x, y):
+    @staticmethod
+    def error(f, x, y):
         return np.sqrt(np.mean((f(x) - y) ** 2))
 
     def figure(self):
@@ -61,10 +62,10 @@ class reader(object):
         f15p = np.polyfit(time, traffic, 15)
         f15 = np.poly1d(f15p)
 
-        #ic(self.error(f1, time, traffic))
-        #ic(self.error(f2, time, traffic))
-        #ic(self.error(f3, time, traffic))
-        #ic(self.error(f15, time, traffic))
+        ic(self.error(f1, time, traffic))
+        ic(self.error(f2, time, traffic))
+        ic(self.error(f3, time, traffic))
+        ic(self.error(f15, time, traffic))
 
         plt.figure(figsize=(10, 6))
         plt.scatter(time, traffic, s=10)
@@ -241,8 +242,8 @@ if __name__ == '__main__':
     r = reader()
 
     #r.csv()
-    #r.figure()
+    r.figure()
     #r.forecast()
     #r.sesonal()
     #r.growth_model()
-    r.holiday_forecast()
+    #r.holiday_forecast()
