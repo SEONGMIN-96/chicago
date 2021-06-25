@@ -29,7 +29,7 @@ class reader(object):
 
         file.context = './data/'
         file.fname = '08. PinkWink Web Traffic'
-        df = read.csv(file, None)
+        df = read.csv_header(file, None)
         df.columns = ['date', 'hit']
         df = df[df['hit'].notnull()]
         #ic(df.head())

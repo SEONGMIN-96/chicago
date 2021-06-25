@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
-class NlprocessConfig(AppConfig):
-    name = 'nlprocess'
+class NaturalLanguageConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'poy.nl_prcs'
