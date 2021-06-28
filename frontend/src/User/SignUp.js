@@ -1,8 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './SignUp.css'
 
 const SignUp = () => {
+  const [userInfo, setUserInfo] = useState({
+    username: '',
+    password: '',
+    name: '',
+    email: '',
+  })
+
+  const {username, password, name, email} = userInfo
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    alert('키: ${name}, 밸류: ${value}')
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+  }
+
     return (<>
+    <div className='Signup'>
     <form action="/action_page.php" style={{border:"1px solid #ccc"}}>
   <div className="container">
     <h1>Sign Up</h1>
@@ -26,10 +45,11 @@ const SignUp = () => {
 
     <div class="clearfix">
       <button type="button" className="cancelbtn">Cancel</button>
-      <button type="submit" className="signupbtn">Sign Up</button>
+      <button type="submit" className="signupbtn" >Sign Up</button>
     </div>
   </div>
 </form>
+</div>
 </>)
 }
 

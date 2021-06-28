@@ -31,3 +31,11 @@ export const ArticleMenu = () => (<nav>
    </ol>
 </nav>
 )
+
+export const TodosMenu = () => (<nav>
+    <ol>
+       <li><Link to='/todo-list'>게시글 목록</Link></li>
+       <li><Link to='/todo-input'>게시글 작성</Link></li>
+   </ol>
+</nav>
+)
