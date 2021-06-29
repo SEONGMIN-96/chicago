@@ -1,16 +1,10 @@
 import React from 'react'
-import { Route, Redirect, Link } from "react-router-dom"
-import { Home, User, Todos, Stock } from './templates'
-import { TodoInput, Todolist } from './todos/components'
-import { Nav } from './common'
-import { Login, Signup, UserDetail, UserEdit, UserList } from './User'
-import { todoReducer } from './store'
-import { Provider } from 'react-redux'
-import { createStore, combineReducers } from 'redux'
+import { Redirect, Route } from "react-router-dom"
+import { Login, Signup, UserDetail, UserEdit,UserList  } from 'user'
+import { Home, User, Item, Blog, Stock} from 'templates'
+import { Nav } from 'common'
 import { BrowserRouter as Router } from 'react-router-dom'
-const rootReducer = combineReducers({todoReducer,})
-
-
+import { Link } from 'react-router-dom'
 const App = () => {
   return (<div>
     <Router>
@@ -18,17 +12,16 @@ const App = () => {
         <Route exact path='/home' component={Home}/>
         <Redirect exact from={'/'} to={'/home'}/>
         <Route exact path='/user' component={User}/>
-        <Route exact path='/stock' component={Stock}/>
-        <Route exact path='/todos' component={Todos}/>
         <Route exact path='/login' component={Login}/>
-        <Route exact path='/signup' component={Signup}/>
+        <Route exact path='/signup-form' component={Signup}/>
         <Route exact path='/user-detail' component={UserDetail}/>
         <Route exact path='/user-edit' component={UserEdit}/>
-        <Route exact path='/todolist' component={TodoInput}/>
-        <Route exact path='/todoinput' component={Todolist}/>
+        <Route exact path='/user-list' component={UserList}/>
+        <Route exact path='/item' component={Item}/>
+        <Route exact path='/blog' component={Blog}/>
+        <Route exact path='/stock' component={Stock}/>
     </Router>
   </div>)
 }
-
 
 export default App

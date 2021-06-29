@@ -2,6 +2,8 @@ import React from 'react'
 
 const UserDetail = () => {
     return (<>
+ 
+        
         <h1>첫번째 크기 헤드라인</h1>
         <h2>두번째 크기 헤드라인</h2>
         <h3>세번째 크기 헤드라인</h3>

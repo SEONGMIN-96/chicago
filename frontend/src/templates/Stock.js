@@ -2,10 +2,10 @@ import React from 'react'
 import { StockMenu as Menu } from '../common'
 import './table.style.css'
 
-const Stock = ({Children}) => (<>
+const Stock = ({children}) => (<>
     <h1>Stock</h1>
     <Menu/>
-    {Children}
+    {children}
 </>)
 
 export default Stock
