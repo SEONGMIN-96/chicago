@@ -1,0 +1,6 @@
+export { default as BoardDelete } from 'board/container/BoardDelete'
+export { default as BoardDetail } from 'board/container/BoardDetail'
+export { default as BoardList } from 'board/container/BoardList'
+export { default as BoardModify } from 'board/container/BoardModify'
+export { default as BoardRegister } from 'board/container/BoardRegister'
+export { default as BoardRetrieve } from 'board/container/BoardRetrieve'

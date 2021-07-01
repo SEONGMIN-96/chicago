@@ -1,47 +1,41 @@
-from django.shortcuts import render
-from django.urls import path
-from . import views
-# Create your views here.
-
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from member.models import Member
+from django.http.response import JsonResponse
+from rest_framework import status
+from member.models import MemberVO
 from member.serializers import MemberSerializer
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.decorators import api_view, parser_classes
 from icecream import ic
+from rest_framework.response import Response
 
 
-class Auth(APIView):
-    def get(self, request):
-        ic(request)
-        # data = JSONParser().parse(request)
-        print('########### 저장 1 ##################')
-        serializer = MemberSerializer(data=request)
-        if serializer.is_valid():
-            print('########### 저장 2 ##################')
-            serializer.save()
-        return Response({'result':'WELCOME'})
-
-
-@csrf_exempt
-def member_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
+@api_view(['GET', 'POST', 'DELETE'])
+@parser_classes([JSONParser])
+def members(request):
     if request.method == 'GET':
-
-        serializer = MemberSerializer()
+        all_members = MemberVO.objects.all()
+        serializer = MemberSerializer(all_members, many=True)
+        return Response(data=serializer.data, status=201)
+    elif request.method == 'POST':
+        new_member = request.data['body']
+        #data = JSONParser().parse(data=new_member)
+        ic(new_member)
+        serializer = MemberSerializer(data=new_member)
         if serializer.is_valid():
-
             serializer.save()
+            return JsonResponse({'result':f'Welcome, {serializer.data.get("name")}'}, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        serializer = MemberSerializer()
         return JsonResponse(serializer.data, safe=False)
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = MemberSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+@api_view(['GET', 'PUT', 'DELETE'])
+def member(request, pk):
+    if request.method == 'GET':
+        serializer = MemberSerializer()
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'PUT':
+        serializer = MemberSerializer()
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'DELETE':
+        serializer = MemberSerializer()
+        return JsonResponse(serializer.data, safe=False)
