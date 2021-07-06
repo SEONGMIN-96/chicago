@@ -22,7 +22,6 @@ urlpatterns = [
     path('connection', Connection.as_view()),
     url(r'^api/member/', include('member.urls')),
     url(r'^adm/member/', include('member.urls')),
-
 ]
 
 '''
